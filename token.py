@@ -7,4 +7,4 @@ class Token(object):
 		self.num_linha = num_linha
 
 	def __str__(self):
-		return "Token -> nome:%s \t lexema:%s \t numero da linha:%s" % (self.nome, self.lexema, self.num_linha)
+		return "Token -> nome:%s \t\t lexema:%s \t\t numero da linha:%s" % (self.nome, self.lexema, self.num_linha)
