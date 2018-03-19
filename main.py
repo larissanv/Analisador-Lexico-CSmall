@@ -97,11 +97,27 @@ class Main():
 					buffer = buffer + c
 			
 			#verificando se foi encontrado o token ==
-			if len(lista_tokens) > 2 and lista_tokens[-1].lexema == lista_tokens[-2].lexema == '=':
-				lista_tokens.pop()
-				lista_tokens.pop()
-				novotoken = Token.Token(self.dic_tokens['=='],'==',linha)
-				lista_tokens.append(novotoken)
+			if len(lista_tokens) > 2:
+				if lista_tokens[-1].lexema == lista_tokens[-2].lexema == '=':
+					lista_tokens.pop()
+					lista_tokens.pop()
+					novotoken = Token.Token(self.dic_tokens['=='],'==',linha)
+					lista_tokens.append(novotoken)
+				elif lista_tokens[-1].lexema == '=' and lista_tokens[-2].lexema == '!':
+					lista_tokens.pop()
+					lista_tokens.pop()
+					novotoken = Token.Token(self.dic_tokens['!='],'!=',linha)
+					lista_tokens.append(novotoken)
+				elif lista_tokens[-1].lexema == '=' and lista_tokens[-2].lexema == '<':
+					lista_tokens.pop()
+					lista_tokens.pop()
+					novotoken = Token.Token(self.dic_tokens['<='],'<=',linha)
+					lista_tokens.append(novotoken)
+				elif lista_tokens[-1].lexema == '=' and lista_tokens[-2].lexema == '>':
+					lista_tokens.pop()
+					lista_tokens.pop()
+					novotoken = Token.Token(self.dic_tokens['>='],'>=',linha)
+					lista_tokens.append(novotoken)
 		#fim do for que le o codigo fonte
 
 		#imprime os tokens encontrados
