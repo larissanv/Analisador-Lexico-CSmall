@@ -31,31 +31,51 @@ class Main():
 		else:
 			 return True
 
-	def run(self):
+	def run(self,arquivo):
 
 		print "Analisador Lexico CSmall"
 
 		#lista que armazenara os tokens
 		lista_tokens = list()
 		#arquivo que contem o codigo fonte a ser analisado
-		arq = open('codigo-fonte.txt', 'r')
+		arq = open(arquivo, 'r')
 		codigofonte = list(arq.read())
 		#variavel que marca em qual linha se encontra a leitura do arquivo
 		linha = 0
 		#Buffer de leitura 
 		buffer = ""
-	
+		flag = 0
+
 		#inicio do for que le o codigo fonte
 		for c in codigofonte:
+
+			# print "buffer " + buffer
+			# print "c " + c
 			#se o caractere lido for quebra de linha, aumenta o contador de linhas
 			if c == '\n':
 				linha += 1
+			
+			#se a lista nao estiver vazias
+			if(c == '|' or c == '&' ):
+				#pega o ultimo elemento
+				if flag == 1:
+					if aux == c:
+						# print "este eh o c " + c + "este eh o aux " + aux
+						# print c + aux
+						novotoken = Token.Token(self.dic_tokens[c+aux],c+aux,linha)
+						lista_tokens.append(novotoken)
+				
+					flag = 0
+					aux = ""
+				else:
+					flag = 1
+					aux = c
+
 			else:
-				# print "buffer " + buffer
-				# print "c " + c
 				#se o caractere lido for um separado ou operador
 				if (c in self.separadores or c in self.operadores):
 					if buffer != "":
+						
 						if buffer in self.dic_tokens:
 							novotoken = Token.Token(self.dic_tokens[buffer],buffer,linha)
 							lista_tokens.append(novotoken)
@@ -75,14 +95,24 @@ class Main():
 						lista_tokens.append(novotoken)
 				else:
 					buffer = buffer + c
+			
+			#verificando se foi encontrado o token ==
+			if len(lista_tokens) > 2 and lista_tokens[-1].lexema == lista_tokens[-2].lexema == '=':
+				lista_tokens.pop()
+				lista_tokens.pop()
+				novotoken = Token.Token(self.dic_tokens['=='],'==',linha)
+				lista_tokens.append(novotoken)
 		#fim do for que le o codigo fonte
+
 		#imprime os tokens encontrados
 		for i in lista_tokens:
-			print str(i)
+		 	print str(i)
 
-def inicio():
+def inicio(arquivo):
 		main = Main()
-		main.run()
+		main.run(arquivo)
 
 if __name__ == "__main__":
-	inicio()
+	# arquivo = raw_input('Nome do arquivo a ser analisado:')
+	arquivo = "testes/teste2.c"
+	inicio(arquivo)
