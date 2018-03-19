@@ -1,4 +1,4 @@
-#Importacao de classe Token
+#Classe Token
 import token as Token
 #biblioteca para expressao regular
 import regex
@@ -55,16 +55,13 @@ class Main():
 			if c == '\n':
 				linha += 1
 			
-			#se a lista nao estiver vazias
+			#verificando se foi encontrado \ ou &
 			if(c == '|' or c == '&' ):
-				#pega o ultimo elemento
+
 				if flag == 1:
 					if aux == c:
-						# print "este eh o c " + c + "este eh o aux " + aux
-						# print c + aux
 						novotoken = Token.Token(self.dic_tokens[c+aux],c+aux,linha)
 						lista_tokens.append(novotoken)
-				
 					flag = 0
 					aux = ""
 				else:
@@ -96,7 +93,7 @@ class Main():
 				else:
 					buffer = buffer + c
 			
-			#verificando se foi encontrado o token ==
+			#verificando se foi encontrado os tokens ==, !=, <=, >= 
 			if len(lista_tokens) > 2:
 				if lista_tokens[-1].lexema == lista_tokens[-2].lexema == '=':
 					lista_tokens.pop()
