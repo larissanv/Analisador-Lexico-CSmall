@@ -6,7 +6,7 @@ import regex
 class Main():
 
 	def __init__(self):
-		self.dic_tokens = {'id': 'ID', 'main': 'MAIN', 'int': 'INT', 'float': 'FLOAT', 'if':'IF','else': 'ELSE','while': 'WHILE','for': 'FOR','read': 'READ','print': 'PRINT','(': 'LBRACKET',')': 'RBRACKET','{': 'LBRACE','}': 'RBRACE',',': 'COMMA',';': 'PCOMMA','=': 'ATTR','<': 'LT','<=': 'LE','>': 'GT','>=': 'GE','==': 'EQ','!=': 'NE','||': 'OR',	'&&': 'AND','+': 'PLUS','-': 'MINUS','*': 'MULT','/': 'DIV', 'num_integer': 'INTEGER_CONST', 'num_float': 'FLOAT_CONST'}
+		self.dic_tokens = {'id': 'ID', 'main': 'MAIN', 'int': 'INT', 'float': 'FLOAT', 'if':'IF','else': 'ELSE','while': 'WHILE','for': 'FOR','read': 'READ','print': 'PRINT','(': 'LBRACKET',')': 'RBRACKET','{': 'LBRACE','}': 'RBRACE',',': 'COMMA',';': 'PCOMMA','=': 'ATTR','<': 'LT','<=': 'LE','>': 'GT','>=': 'GE','==': 'EQ','!=': 'NE','||': 'OR',	'&&': 'AND','+': 'PLUS','-': 'MINUS','*': 'MULT','/': 'DIV', 'num_integer': 'INTEGER_CONST', 'num_float': 'FLOAT_CONST', '!': 'EXCLAMACAO'}
 		self.operadores = ['+','-','*','/','=','<','>','!','&','|']
 		self.separadores = [' ', '\n', '\t', '(', ')','{','}',',',';','\r']
 		
@@ -49,8 +49,6 @@ class Main():
 		#inicio do for que le o codigo fonte
 		for c in codigofonte:
 
-			# print "buffer " + buffer
-			# print "c " + c
 			#se o caractere lido for quebra de linha, aumenta o contador de linhas
 			if c == '\n':
 				linha += 1
@@ -126,6 +124,6 @@ def inicio(arquivo):
 		main.run(arquivo)
 
 if __name__ == "__main__":
-	# arquivo = raw_input('Nome do arquivo a ser analisado:')
-	arquivo = "testes/teste2.c"
+	arquivo = raw_input('Nome do arquivo a ser analisado:')
+	# arquivo = "testes/codigo-fonte.txt"
 	inicio(arquivo)

@@ -11,7 +11,7 @@ while (i < j)
 i = i + inc;
 a = a*i;
 }
-if (a > 10.0 || a < 0 && a==10)
+if (a >= 10.0 || a <= 0 && a!=10 || a==100 )
 {
 print(a + i);
 }

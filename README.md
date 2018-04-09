@@ -5,3 +5,5 @@ Para executar:
 ```
 python main.py
 ```
+
+Em seguida, digite o nome do arquivo que deseja analisar.
